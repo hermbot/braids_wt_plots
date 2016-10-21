@@ -101,10 +101,10 @@ def clean(data):
     return array_form
 
 
-def get_wave(address, table):
-    # Waves are 129 samples long
-    start = address * 129
-    return table[start:start + 129]
+def get_wave(address, table, no_samples=129):
+    # no_samples are set to 129 f
+    start = address * no_samples
+    return table[start:start + no_samples]
 
 
 def crossfade(wave1, wave2, pct_wave1):
