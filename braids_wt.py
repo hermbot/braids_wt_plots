@@ -102,7 +102,7 @@ def clean(data):
 
 
 def get_wave(address, table, no_samples=129):
-    # no_samples are set to 129 f
+    # no_samples is set to 129 as a default for Braids wavetables.
     start = address * no_samples
     return table[start:start + no_samples]
 
