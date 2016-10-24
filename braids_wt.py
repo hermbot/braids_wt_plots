@@ -143,6 +143,9 @@ def main():
     for i in waves:
         plt.plot(X, get_wave(i, wt_waves))
 
+    plt.title('Waves')
+    plt.xlim(0, 129)
+    plt.ylim(0, 256)
     plt.show()
 
 if __name__ == '__main__':
