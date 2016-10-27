@@ -140,10 +140,11 @@ def old_main():
 
 
 def main():
-    plot_waves_overlay()
-
-def plot_waves_overlay():
-    for i in waves:
+    plot_waves_overlay(waves)
+w
+def plot_waves_overlay(wave_set):
+    """Overlays each wave in a set."""
+    for i in wave_set:
         plt.plot(X, get_wave(i, wt_waves))
 
     f = plt.gca()
