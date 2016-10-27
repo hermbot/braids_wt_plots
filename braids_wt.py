@@ -142,6 +142,7 @@ def old_main():
 def main():
     plot_waves_overlay(waves)
 
+
 def plot_waves_overlay(wave_set):
     """Overlays each wave in a set."""
     for i in wave_set:
