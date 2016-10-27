@@ -140,9 +140,15 @@ def old_main():
 
 
 def main():
+    plot_waves_overlay()
+
+def plot_waves_overlay():
     for i in waves:
         plt.plot(X, get_wave(i, wt_waves))
 
+    f = plt.gca()
+    f.axes.get_xaxis().set_visible(False)
+    f.axes.get_yaxis().set_visible(False)
     plt.title('Waves')
     plt.xlim(0, 129)
     plt.ylim(0, 256)
