@@ -97,8 +97,7 @@ def read_values(file_name, var_name):
 def clean(data):
     """Remove all newline characters and spaces and convert to numpy array."""
     data = ''.join(data.split())
-    array_form = np.fromstring(data, dtype=np.int16, sep=',')
-    return array_form
+    return = np.fromstring(data, dtype=np.int16, sep=',')
 
 
 def get_wave(address, table, no_samples=129):
