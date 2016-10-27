@@ -154,7 +154,25 @@ def plot_waves_overlay(wave_set):
     plt.title('Waves')
     plt.xlim(0, 129)
     plt.ylim(0, 256)
+    plt.savefig('overlay.png')
     plt.show()
+
+
+def plot_allwaves(wave_set):
+    """Plots each wave in an individual file."""
+    k =0
+    for i in wave_set:
+        plt.plot(X, get_wave(i, wt_waves))
+        f = plt.gca()
+        f.axes.get_xaxis().set_visible(False)
+        f.axes.get_yaxis().set_visible(False)
+        plt.title('Waves')
+        plt.xlim(0, 129)
+        plt.ylim(0, 256)
+        plt.savefig('overlay' + str(k) + '.png')
+        #plt.show()
+        k += 1
+
 
 if __name__ == '__main__':
     main()
