@@ -97,7 +97,7 @@ def read_values(file_name, var_name):
 def clean(data):
     """Remove all newline characters and spaces and convert to numpy array."""
     data = ''.join(data.split())
-    return = np.fromstring(data, dtype=np.int16, sep=',')
+    return np.fromstring(data, dtype=np.int16, sep=',')
 
 
 def get_wave(address, table, no_samples=129):
@@ -135,7 +135,7 @@ def old_main():
 
 
 def main():
-    plot_allwaves(waves)
+    plot_interp_waves(piano, 10)
 
 
 def plot_waves_overlay(wave_set):
@@ -155,7 +155,7 @@ def plot_waves_overlay(wave_set):
 
 def plot_allwaves(wave_set):
     """Plots each wave in an individual file."""
-    k = 0
+    suffix = 0
     for i in wave_set:
         plt.plot(X, get_wave(i, wt_waves))
         f = plt.gca()
@@ -164,29 +164,32 @@ def plot_allwaves(wave_set):
         plt.title('Waves')
         plt.xlim(0, 129)
         plt.ylim(0, 256)
-        plt.savefig(TARGET_DIR + 'overlay' + str(k) + '.png')
+        plt.savefig(TARGET_DIR + 'overlay' + str(suffix) + '.png')
         #plt.show()
         plt.close()
-        k += 1
+        suffix += 1
 
 
 def plot_interp_waves(wave_set, subdivisions):
     """Plots each wave in an individual file."""
-    k = 0
+    suffix = 0
     crossfade_amount = np.linspace(0, 1, subdivisions)
     for i in wave_set:
-        plt.plot(X, get_wave(i, wt_waves))
-        f = plt.gca()
-        f.axes.get_xaxis().set_visible(False)
-        f.axes.get_yaxis().set_visible(False)
-        plt.title('Waves')
-        plt.xlim(0, 129)
-        plt.ylim(0, 256)
-        plt.savefig(TARGET_DIR + 'overlay' + str(k) + '.png')
-        #plt.show()
-        plt.close()
-        k += 1
+        for k in crossfade_amount:
+            plt.plot(X, crossfade(get_wave(i, wt_waves), get_wave(i + 1, wt_waves), k))
+            f = plt.gca()
+            format_plot(f, wave_set)
+            plt.savefig(TARGET_DIR + 'overlay' + str(suffix) + '.png')
+            #plt.show()
+            plt.close()
+            suffix += 1
 
+def format_plot(plot_name, wave):
+    plot_name.axes.get_xaxis().set_visible(False)
+    plot_name.axes.get_yaxis().set_visible(False)
+    plt.xlim(0, 129)
+    plt.ylim(0, 256)
+    plt.title('Waves')
 
 if __name__ == '__main__':
     main()
