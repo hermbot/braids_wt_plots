@@ -19,7 +19,7 @@ import pylab as plt
 import seaborn as sns
 
 RESOURCE_FILE = 'resources.cc'
-TARGET_DIR = 'C:\\Users\\mHermes\\Desktop\\Lunch\\braids_wt\\Images'
+TARGET_DIR = 'C:\\Users\\mHermes\\Desktop\\test_images\\'
 TEAL = [24, 116, 113]
 MAGENTA = [179, 23, 72]
 X = np.arange(129)
@@ -114,10 +114,6 @@ def crossfade(wave1, wave2, pct_wave1):
     return (wave1 * pct_wave1) + (wave2 * (1 - pct_wave1))
 
 
-def create_images(image_list, target_dir):
-    pass
-
-
 wt_waves = clean(read_values(RESOURCE_FILE, 'wt_waves'))
 # wt_code = clean(read_values(RESOURCE_FILE, 'wt_code'))
 # wt_map = clean(read_values(RESOURCE_FILE, 'wt_map'))
@@ -140,7 +136,7 @@ def old_main():
 
 
 def main():
-    plot_waves_overlay(waves)
+    plot_allwaves(waves)
 
 
 def plot_waves_overlay(wave_set):
@@ -160,7 +156,7 @@ def plot_waves_overlay(wave_set):
 
 def plot_allwaves(wave_set):
     """Plots each wave in an individual file."""
-    k =0
+    k = 0
     for i in wave_set:
         plt.plot(X, get_wave(i, wt_waves))
         f = plt.gca()
@@ -169,8 +165,27 @@ def plot_allwaves(wave_set):
         plt.title('Waves')
         plt.xlim(0, 129)
         plt.ylim(0, 256)
-        plt.savefig('overlay' + str(k) + '.png')
+        plt.savefig(TARGET_DIR + 'overlay' + str(k) + '.png')
         #plt.show()
+        plt.close()
+        k += 1
+
+
+def plot_interp_waves(wave_set, subdivisions):
+    """Plots each wave in an individual file."""
+    k = 0
+    crossfade_amount = np.linspace(0, 1, subdivisions)
+    for i in wave_set:
+        plt.plot(X, get_wave(i, wt_waves))
+        f = plt.gca()
+        f.axes.get_xaxis().set_visible(False)
+        f.axes.get_yaxis().set_visible(False)
+        plt.title('Waves')
+        plt.xlim(0, 129)
+        plt.ylim(0, 256)
+        plt.savefig(TARGET_DIR + 'overlay' + str(k) + '.png')
+        #plt.show()
+        plt.close()
         k += 1
 
 
