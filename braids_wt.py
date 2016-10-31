@@ -135,7 +135,7 @@ def old_main():
 
 
 def main():
-    plot_interp_waves(piano, 10)
+    plot_interp_waves(digital, 20)
 
 
 def plot_waves_overlay(wave_set):
@@ -173,7 +173,7 @@ def plot_allwaves(wave_set):
 def plot_interp_waves(wave_set, subdivisions):
     """Plots each wave in an individual file."""
     suffix = 0
-    crossfade_amount = np.linspace(0, 1, subdivisions)
+    crossfade_amount = np.linspace(1, 0, subdivisions)
     for i in wave_set:
         for k in crossfade_amount:
             plt.plot(X, crossfade(get_wave(i, wt_waves), get_wave(i + 1, wt_waves), k))
