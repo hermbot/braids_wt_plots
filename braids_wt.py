@@ -20,9 +20,9 @@ import seaborn as sns
 
 RESOURCE_FILE = 'resources.cc'
 TARGET_DIR = 'C:\\Users\\mHermes\\Desktop\\test_images\\'
-TEAL = [24, 116, 113]
-MAGENTA = [179, 23, 72]
-X = np.arange(129)
+TEAL = (0.094, 0.455, 0.443)
+MAGENTA = (0.702, 0.09, 0.282)
+X_AXIS = np.arange(129)
 
 
 # These lists come from digital_oscillator.cc. In the source code they are
@@ -67,6 +67,8 @@ all_waves = {'Male': male, 'Female': female, 'Choir': choir, 'Space Voice':
             'Slap': slap, 'Piano': piano, 'Organ': organ, 'Waves': waves,
             'Digital': digital, 'Drone 1': drone1, 'Drone 2': drone2,
             'Metallic': metallic, 'Fantasy': fantasy, 'Bell': bell}
+
+
 
 def read_values(file_name, var_name):
     """Opens a source code file and returns the block of text between the
@@ -125,12 +127,12 @@ def old_main():
     a2 = (a * 0.6) + (b * 0.4)
     a4 = (a * 0.4) + (b * 0.6)
     a5 = (a * 0.2) + (b * 0.8)
-    plt.plot(X, a)
-    plt.plot(X, a1)
-    plt.plot(X, a2)
-    plt.plot(X, a4)
-    plt.plot(X, a5)
-    plt.plot(X, b)
+    plt.plot(X_AXIS, a)
+    plt.plot(X_AXIS, a1)
+    plt.plot(X_AXIS, a2)
+    plt.plot(X_AXIS, a4)
+    plt.plot(X_AXIS, a5)
+    plt.plot(X_AXIS, b)
     plt.show()
 
 
@@ -141,7 +143,7 @@ def main():
 def plot_waves_overlay(wave_set):
     """Overlays each wave in a set."""
     for i in wave_set:
-        plt.plot(X, get_wave(i, wt_waves))
+        plt.plot(X_AXIS, get_wave(i, wt_waves))
 
     f = plt.gca()
     f.axes.get_xaxis().set_visible(False)
@@ -157,7 +159,7 @@ def plot_allwaves(wave_set):
     """Plots each wave in an individual file."""
     suffix = 0
     for i in wave_set:
-        plt.plot(X, get_wave(i, wt_waves))
+        plt.plot(X_AXIS, get_wave(i, wt_waves))
         f = plt.gca()
         f.axes.get_xaxis().set_visible(False)
         f.axes.get_yaxis().set_visible(False)
@@ -176,7 +178,7 @@ def plot_interp_waves(wave_set, subdivisions):
     crossfade_amount = np.linspace(1, 0, subdivisions)
     for i in wave_set:
         for k in crossfade_amount:
-            plt.plot(X, crossfade(get_wave(i, wt_waves), get_wave(i + 1, wt_waves), k))
+            plt.plot(X_AXIS, crossfade(get_wave(i, wt_waves), get_wave(i + 1, wt_waves), k))
             f = plt.gca()
             format_plot(f, wave_set)
             plt.savefig(TARGET_DIR + 'overlay' + str(suffix) + '.png')
@@ -189,7 +191,7 @@ def format_plot(plot_name, wave):
     plot_name.axes.get_yaxis().set_visible(False)
     plt.xlim(0, 129)
     plt.ylim(0, 256)
-    plt.title('Waves', fontsize=16, fontname='DejaVu Sans Mono')
+    plt.title('Waves', fontsize=16, fontname='Consolas')
 
 if __name__ == '__main__':
     main()
