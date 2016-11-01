@@ -20,17 +20,17 @@ import seaborn as sns
 
 RESOURCE_FILE = 'resources.cc'
 TARGET_DIR = 'C:\\Users\\mHermes\\Desktop\\test_images\\'
+X_AXIS = np.arange(129)
+
+# The closest I could get to "the" MI colors
 TEAL = ((58 / 255), (158 / 255), (163 / 255))
 MAGENTA = ((210 / 255), (64 / 255), (99 / 255))
-X_AXIS = np.arange(129)
 
 
 # These lists come from digital_oscillator.cc. In the source code they are
-# set up to be lists of either 8 or 16 waveforms, in many cases there are
-# some values that are repeated to fill out the values. Curiously, table
-# 16, Organ, has what might be a typo where the first value is 176
-# which is out of order with the rest of the table. I removed it from this
-# list. 176 was also at the beginning of digital.
+# set up to be lists of either 8 or 16 waveforms. In many cases there are
+# some values that are repeated to fill out the values. I have removed duplicates.
+# "Organ" and "Digital" both start with Sine waves that are repeated from "Waves".
 
 male =          [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
 female =        [16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31]
