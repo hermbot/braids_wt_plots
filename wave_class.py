@@ -46,8 +46,34 @@ bell =          ([252, 253, 254, 255], 'Bell')
 
 
 class FullWaveTable(object):
-    def __init__(self, file_name):
+    def __init__(self, file_name, variable_name):
         self.file_name = file_name
+        self.variable_name = variable_name
+
+    def read_values(file_name, var_name):
+        """Opens a source code file and returns the block of text between the
+        declaration of a variable and the closing brace. Used for grabbing
+        wavetable data and indices from Braids source code. Requires knowledge
+        of variable names beforehand.
+
+        "If" statments are set up such that the declaration line and the
+        closing brace line are omitted and the routine will stop when
+        successful rather than continuing to read to the end of the file.
+        """
+        append_flag = False
+        text_lines = ""
+
+        searchfile = open(file_name, "r")
+        for line in searchfile:
+            if var_name in line:
+                append_flag = True
+            if append_flag and ('}' in line):
+                break
+            if append_flag and (var_name not in line):
+                text_lines += line
+
+        searchfile.close()
+        return text_lines
 
 
 class WaveTable(object):
