@@ -50,7 +50,7 @@ class FullWaveTable(object):
         self.file_name = file_name
         self.variable_name = variable_name
 
-    def read_values(file_name, var_name):
+    def read_values(self):
         """Opens a source code file and returns the block of text between the
         declaration of a variable and the closing brace. Used for grabbing
         wavetable data and indices from Braids source code. Requires knowledge
@@ -63,13 +63,13 @@ class FullWaveTable(object):
         append_flag = False
         text_lines = ""
 
-        searchfile = open(file_name, "r")
+        searchfile = open(self.file_name, "r")
         for line in searchfile:
-            if var_name in line:
+            if self.variable_name in line:
                 append_flag = True
             if append_flag and ('}' in line):
                 break
-            if append_flag and (var_name not in line):
+            if append_flag and (self.variable_name not in line):
                 text_lines += line
 
         searchfile.close()
