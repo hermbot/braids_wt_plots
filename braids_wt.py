@@ -195,19 +195,3 @@ def format_plot(plot_name, wave):
 if __name__ == '__main__':
     main()
 
-
-
-
-'''data = np.genfromtxt(data_file, delimiter=',')
-print(data.size)
-
-wave_samples = 128
-number_of_waves = np.arange(129)
-wave_index = number_of_waves * wave_samples
-
-
-for i in range(1, 2):
-    plt.axis('off')
-    plt.title(i)
-    plt.plot(data[wave_index[i]:wave_index[i] + 255])
-    plt.show()'''
