@@ -135,7 +135,7 @@ def old_main():
 
 
 def main():
-    plot_interp_waves(digital, 20)
+    plot_interp_waves(waves, 20)
 
 
 def plot_waves_overlay(wave_set):
@@ -189,7 +189,7 @@ def format_plot(plot_name, wave):
     plot_name.axes.get_yaxis().set_visible(False)
     plt.xlim(0, 129)
     plt.ylim(0, 256)
-    plt.title('Waves')
+    plt.title('Waves', fontsize=20)
 
 if __name__ == '__main__':
     main()
