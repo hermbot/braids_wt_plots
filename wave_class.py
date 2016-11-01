@@ -44,6 +44,12 @@ fantasy =       ([236, 237, 238, 239, 240, 241, 242, 243, 244, 245, 246, 247,
                 248, 249, 250, 251], 'Fantasy')
 bell =          ([252, 253, 254, 255], 'Bell')
 
+
+class FullWaveTable(object):
+    def __init__(self, file_name):
+        self.file_name = file_name
+
+
 class WaveTable(object):
     def __init__(self, table_definition):
         self.table = table_definition[0]
