@@ -117,26 +117,6 @@ wt_waves = clean(read_values(RESOURCE_FILE, 'wt_waves'))
 # wt_code = clean(read_values(RESOURCE_FILE, 'wt_code'))
 # wt_map = clean(read_values(RESOURCE_FILE, 'wt_map'))
 
-def old_main():
-    a = get_wave(237, wt_waves)
-    b = get_wave(238, wt_waves)
-
-    a1 = (a * 0.8) + (b * 0.2)
-    a2 = (a * 0.6) + (b * 0.4)
-    a4 = (a * 0.4) + (b * 0.6)
-    a5 = (a * 0.2) + (b * 0.8)
-    plt.plot(X_AXIS, a)
-    plt.plot(X_AXIS, a1)
-    plt.plot(X_AXIS, a2)
-    plt.plot(X_AXIS, a4)
-    plt.plot(X_AXIS, a5)
-    plt.plot(X_AXIS, b)
-    plt.show()
-
-
-def main():
-    plot_interp_waves(waves, 20)
-
 
 def plot_waves_overlay(wave_set):
     """Overlays each wave in a set."""
@@ -191,6 +171,11 @@ def format_plot(plot_name, wave):
     plt.xlim(0, 129)
     plt.ylim(0, 256)
     plt.title('Waves', fontsize=16, fontname='Consolas')
+
+
+def main():
+    plot_interp_waves(waves, 20)
+
 
 if __name__ == '__main__':
     main()
