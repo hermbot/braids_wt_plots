@@ -68,8 +68,6 @@ all_waves = {'Male': male, 'Female': female, 'Choir': choir, 'Space Voice':
             'Digital': digital, 'Drone 1': drone1, 'Drone 2': drone2,
             'Metallic': metallic, 'Fantasy': fantasy, 'Bell': bell}
 
-
-
 def read_values(file_name, var_name):
     """Opens a source code file and returns the block of text between the
     declaration of a variable and the closing brace. Used for grabbing
@@ -191,7 +189,7 @@ def format_plot(plot_name, wave):
     plot_name.axes.get_yaxis().set_visible(False)
     plt.xlim(0, 129)
     plt.ylim(0, 256)
-    plt.title('Waves', fontsize=16, fontname='Consolas')
+    plt.title('Waves', fontsize=16, fontname='DejaVu Sans Mono')
 
 if __name__ == '__main__':
     main()
