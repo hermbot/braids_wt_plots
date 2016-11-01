@@ -30,7 +30,7 @@ MAGENTA = ((210 / 255), (64 / 255), (99 / 255))
 # These lists come from digital_oscillator.cc. In the source code they are
 # set up to be lists of either 8 or 16 waveforms. In many cases there are
 # some values that are repeated to fill out the values. I have removed duplicates.
-# "Organ" and "Digital" both start with Sine waves that are repeated from "Waves".
+# "Organ" and "Digital" both start with sine waves that are repeated from "Waves".
 
 male =          [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
 female =        [16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31]
