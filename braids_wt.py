@@ -20,8 +20,8 @@ import seaborn as sns
 
 RESOURCE_FILE = 'resources.cc'
 TARGET_DIR = 'C:\\Users\\mHermes\\Desktop\\test_images\\'
-TEAL = (0.094, 0.455, 0.443)
-MAGENTA = (0.702, 0.09, 0.282)
+TEAL = ((58 / 255), (158 / 255), (163 / 255))
+MAGENTA = ((210 / 255), (64 / 255), (99 / 255))
 X_AXIS = np.arange(129)
 
 
@@ -176,7 +176,7 @@ def plot_interp_waves(wave_set, subdivisions):
     crossfade_amount = np.linspace(1, 0, subdivisions)
     for i in wave_set:
         for k in crossfade_amount:
-            plt.plot(X_AXIS, crossfade(get_wave(i, wt_waves), get_wave(i + 1, wt_waves), k))
+            plt.plot(X_AXIS, crossfade(get_wave(i, wt_waves), get_wave(i + 1, wt_waves), k), color=MAGENTA)
             f = plt.gca()
             format_plot(f, wave_set)
             plt.savefig(TARGET_DIR + 'overlay' + str(suffix) + '.png')
