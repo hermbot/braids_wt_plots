@@ -189,7 +189,7 @@ def format_plot(plot_name, wave):
     plot_name.axes.get_yaxis().set_visible(False)
     plt.xlim(0, 129)
     plt.ylim(0, 256)
-    plt.title('Waves', fontsize=20)
+    plt.title('Waves', fontsize=16, fontname='DejaVu Sans Mono')
 
 if __name__ == '__main__':
     main()
