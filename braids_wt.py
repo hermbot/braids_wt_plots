@@ -145,7 +145,6 @@ def plot_allwaves(wave_set):
         plt.xlim(0, 129)
         plt.ylim(0, 256)
         plt.savefig(TARGET_DIR + 'overlay' + str(suffix) + '.png')
-        #plt.show()
         plt.close()
         suffix += 1
 
@@ -163,19 +162,13 @@ def plot_interp_waves(wave_set, subdivisions):
 def single_plot(series1, suffix):
     plt.plot(X_AXIS, series1, color=MAGENTA)
     f = plt.gca()
-    format_plot(f)
-    plt.savefig(TARGET_DIR + 'overlay' + str(suffix) + '.png')
-    #plt.show()
-    plt.close()
-
-
-def format_plot(plot_name):
-    plot_name.axes.get_xaxis().set_visible(False)
-    plot_name.axes.get_yaxis().set_visible(False)
+    f.axes.get_xaxis().set_visible(False)
+    f.axes.get_yaxis().set_visible(False)
     plt.xlim(0, 129)
     plt.ylim(0, 256)
     plt.title('Waves', fontsize=16, fontname='Consolas')
-
+    plt.savefig(TARGET_DIR + 'overlay' + str(suffix) + '.png')
+    plt.close()
 
 def main():
     plot_interp_waves(waves, 20)
