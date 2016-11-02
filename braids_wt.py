@@ -61,12 +61,14 @@ fantasy =       [236, 237, 238, 239, 240, 241, 242, 243, 244, 245, 246, 247,
                 248, 249, 250, 251]
 bell =          [252, 253, 254, 255]
 
+
 all_waves = {'Male': male, 'Female': female, 'Choir': choir, 'Space Voice':
             space_voice, 'Tampura': tampura, 'Shamus': shamus, 'Swept String':
             swept_string, 'Bowed': bowed, 'Cello': cello, 'Vibes': vibes,
             'Slap': slap, 'Piano': piano, 'Organ': organ, 'Waves': waves,
             'Digital': digital, 'Drone 1': drone1, 'Drone 2': drone2,
             'Metallic': metallic, 'Fantasy': fantasy, 'Bell': bell}
+
 
 def read_values(file_name, var_name):
     """Opens a source code file and returns the block of text between the
@@ -159,7 +161,7 @@ def plot_interp_waves(wave_set, subdivisions):
         wave_to_plot = get_wave(i, wt_waves)
 
         # Here we add extra frames for the animation at each defined wave shape
-        for m in range(0, repeats + 1):
+        for j in range(0, repeats + 1):
             single_plot(wave_to_plot, suffix)
             suffix += 1
 
@@ -176,13 +178,13 @@ def single_plot(series1, suffix):
     f.axes.get_yaxis().set_visible(False)
     plt.xlim(0, 129)
     plt.ylim(0, 256)
-    plt.title('Waves', fontsize=16, fontname='Consolas')
+    plt.title('Cello', fontsize=16, fontname='Consolas')
     plt.savefig(TARGET_DIR + 'overlay' + str(suffix) + '.png')
     plt.close()
 
 
 def main():
-    plot_interp_waves(waves, 20)
+    plot_interp_waves(cello, 20)
 
 
 if __name__ == '__main__':
