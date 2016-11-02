@@ -26,7 +26,6 @@ X_AXIS = np.arange(129)
 TEAL = ((58 / 255), (158 / 255), (163 / 255))
 MAGENTA = ((210 / 255), (64 / 255), (99 / 255))
 
-
 # These lists come from digital_oscillator.cc. In the source code they are
 # set up to be lists of either 8 or 16 waveforms. In many cases there are
 # some values that are repeated to fill out the values. I have removed duplicates.
@@ -62,12 +61,12 @@ fantasy =       [236, 237, 238, 239, 240, 241, 242, 243, 244, 245, 246, 247,
 bell =          [252, 253, 254, 255]
 
 
-all_waves = {'Male': male, 'Female': female, 'Choir': choir, 'Space Voice':
-            space_voice, 'Tampura': tampura, 'Shamus': shamus, 'Swept String':
-            swept_string, 'Bowed': bowed, 'Cello': cello, 'Vibes': vibes,
-            'Slap': slap, 'Piano': piano, 'Organ': organ, 'Waves': waves,
-            'Digital': digital, 'Drone 1': drone1, 'Drone 2': drone2,
-            'Metallic': metallic, 'Fantasy': fantasy, 'Bell': bell}
+wave_list = [male, female, choir, space_voice, tampura, shamus, swept_string, bowed, cello,
+            vibes, slap, piano, organ, waves, digital, drone1, drone2, metallic, fantasy, bell]
+
+wave_names = ['Male', 'Female', 'Choir', 'Space Voice', 'Tampura', 'Shamus', 'Swept String',
+             'Bowed', 'Cello', 'Vibes', 'Slap', 'Piano', 'Organ', 'Waves', 'Digital', 'Drone 1',
+             'Drone 2', 'Metallic', 'Fantasy', 'Bell']
 
 
 def read_values(file_name, var_name):
@@ -102,22 +101,17 @@ def clean(data):
     return np.fromstring(data, dtype=np.int16, sep=',')
 
 
+#TODO move this somewhere more appropriate
+wt_waves = clean(read_values(RESOURCE_FILE, 'wt_waves'))
+
 def get_wave(address, table, no_samples=129):
-    # no_samples is set to 129 as a default for Braids wavetables.
     start = address * no_samples
     return table[start:start + no_samples]
 
 
 def crossfade(wave1, wave2, pct_wave1):
-    """Returns a wave between the two arguments based on value of pct_wave1.
-    pct_wave1 needs to be a decimal value between 0 and 0.99.
-    """
+    """pct_wave1 needs to be a decimal value between 0 and 0.99."""
     return (wave1 * pct_wave1) + (wave2 * (1 - pct_wave1))
-
-
-wt_waves = clean(read_values(RESOURCE_FILE, 'wt_waves'))
-# wt_code = clean(read_values(RESOURCE_FILE, 'wt_code'))
-# wt_map = clean(read_values(RESOURCE_FILE, 'wt_map'))
 
 
 def plot_waves_overlay(wave_set):
@@ -179,7 +173,7 @@ def plot_interp_waves(wave_set, subdivisions):
 
 
 def single_plot(series1, suffix):
-    plt.plot(X_AXIS, series1, color=MAGENTA)
+    plt.plot(X_AXIS, series1, color=TEAL)
     f = plt.gca()
     f.axes.get_xaxis().set_visible(False)
     f.axes.get_yaxis().set_visible(False)
@@ -191,9 +185,8 @@ def single_plot(series1, suffix):
 
 
 def main():
-    plot_interp_waves(swept_string, 20)
+    plot_interp_waves(piano, 20)
 
 
 if __name__ == '__main__':
     main()
-
