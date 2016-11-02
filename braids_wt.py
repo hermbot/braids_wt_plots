@@ -152,7 +152,14 @@ def plot_allwaves(wave_set):
 
 
 def plot_interp_waves(wave_set, subdivisions):
-    """Plots each wave in an individual file."""
+    """Plots each wave in an individual file.
+
+    This is one of the functions you would call in main() to create
+    output. repeats is the number of times to repeat the frames of
+    animation for each of the "base" waves. subdivisions is the
+    number of frames to create between each base wave.
+
+    """
     suffix = 0
     crossfade_amount = np.linspace(1, 0, subdivisions)
     repeats = 5
@@ -184,7 +191,7 @@ def single_plot(series1, suffix):
 
 
 def main():
-    plot_interp_waves(cello, 20)
+    plot_interp_waves(swept_string, 20)
 
 
 if __name__ == '__main__':
