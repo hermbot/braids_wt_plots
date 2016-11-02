@@ -153,7 +153,17 @@ def plot_interp_waves(wave_set, subdivisions):
     """Plots each wave in an individual file."""
     suffix = 0
     crossfade_amount = np.linspace(1, 0, subdivisions)
+    repeats = 5
+
     for i in wave_set:
+        wave_to_plot = get_wave(i, wt_waves)
+
+        # Here we add extra frames for the animation at each defined wave shape
+        for m in range(0, repeats + 1):
+            single_plot(wave_to_plot, suffix)
+            suffix += 1
+
+        # These are the cross-faded wave shapes
         for k in crossfade_amount:
             single_plot(crossfade(get_wave(i, wt_waves), get_wave(i + 1, wt_waves), k), suffix)
             suffix += 1
@@ -169,6 +179,7 @@ def single_plot(series1, suffix):
     plt.title('Waves', fontsize=16, fontname='Consolas')
     plt.savefig(TARGET_DIR + 'overlay' + str(suffix) + '.png')
     plt.close()
+
 
 def main():
     plot_interp_waves(waves, 20)
