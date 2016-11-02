@@ -156,16 +156,20 @@ def plot_interp_waves(wave_set, subdivisions):
     crossfade_amount = np.linspace(1, 0, subdivisions)
     for i in wave_set:
         for k in crossfade_amount:
-            plt.plot(X_AXIS, crossfade(get_wave(i, wt_waves), get_wave(i + 1, wt_waves), k), color=MAGENTA)
-            f = plt.gca()
-            format_plot(f, wave_set)
-            plt.savefig(TARGET_DIR + 'overlay' + str(suffix) + '.png')
-            #plt.show()
-            plt.close()
+            single_plot(crossfade(get_wave(i, wt_waves), get_wave(i + 1, wt_waves), k), suffix)
             suffix += 1
 
 
-def format_plot(plot_name, wave):
+def single_plot(series1, suffix):
+    plt.plot(X_AXIS, series1, color=MAGENTA)
+    f = plt.gca()
+    format_plot(f)
+    plt.savefig(TARGET_DIR + 'overlay' + str(suffix) + '.png')
+    #plt.show()
+    plt.close()
+
+
+def format_plot(plot_name):
     plot_name.axes.get_xaxis().set_visible(False)
     plot_name.axes.get_yaxis().set_visible(False)
     plt.xlim(0, 129)
