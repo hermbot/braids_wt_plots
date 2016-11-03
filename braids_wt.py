@@ -17,6 +17,7 @@ switching from one table to another.
 import numpy as np
 import pylab as plt
 import seaborn as sns
+import os
 
 RESOURCE_FILE = 'resources.cc'
 TARGET_DIR = 'C:\\Users\\mHermes\\Desktop\\test_images\\'
