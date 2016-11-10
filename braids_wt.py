@@ -162,7 +162,8 @@ def plot_interp_waves(wave_set, subdivisions):
     for i in wave_set:
         wave_to_plot = get_wave(i, wt_waves)
 
-        # Here we add extra frames for the animation at each defined wave shape
+        # Here we add extra frames for the animation at each defined wave shape, effectively
+        # "pausing" th animation on the non-cross-faded points.
         for j in range(0, repeats + 1):
             single_plot(wave_to_plot, suffix)
             suffix += 1
