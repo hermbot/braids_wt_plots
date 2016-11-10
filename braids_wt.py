@@ -17,6 +17,7 @@ switching from one table to another.
 import numpy as np
 import pylab as plt
 import seaborn as sns
+import os
 
 RESOURCE_FILE = 'resources.cc'
 TARGET_DIR = 'C:\\Users\\mHermes\\Desktop\\test_images\\'
@@ -170,6 +171,13 @@ def plot_interp_waves(wave_set, subdivisions):
         for k in crossfade_amount:
             single_plot(crossfade(get_wave(i, wt_waves), get_wave(i + 1, wt_waves), k), suffix)
             suffix += 1
+
+
+def animate_all_waves():
+    """Creates subdirectories for all waves and animates them."""
+    for i in range(1, len(wave_list) + 1):
+        wave_to_plot = wave_list[i]
+        wave_name = wave_names[i]
 
 
 def single_plot(series1, suffix):
