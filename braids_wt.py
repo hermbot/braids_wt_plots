@@ -146,7 +146,7 @@ def plot_allwaves(wave_set):
         suffix += 1
 
 
-def plot_interp_waves(wave_set, subdivisions):
+def plot_interp_waves(wave_set, wave_name, subdivisions, target_dir):
     """Plots each wave in an individual file.
 
     This is one of the functions you would call in main() to create
@@ -165,36 +165,44 @@ def plot_interp_waves(wave_set, subdivisions):
         # Here we add extra frames for the animation at each defined wave shape, effectively
         # "pausing" th animation on the non-cross-faded points.
         for j in range(0, repeats + 1):
-            single_plot(wave_to_plot, suffix)
+            single_plot(wave_to_plot, wave_name, suffix, target_dir)
             suffix += 1
 
         # These are the cross-faded wave shapes
         for k in crossfade_amount:
-            single_plot(crossfade(get_wave(i, wt_waves), get_wave(i + 1, wt_waves), k), suffix)
+            crossfade_data = crossfade(get_wave(i, wt_waves), get_wave(i + 1, wt_waves), k)
+            single_plot(crossfade_data, wave_name, suffix, target_dir)
             suffix += 1
 
 
 def animate_all_waves():
     """Creates subdirectories for all waves and animates them."""
-    for i in range(1, len(wave_list) + 1):
+    for i in range(0, len(wave_list)):
         wave_to_plot = wave_list[i]
         wave_name = wave_names[i]
 
+        current_target_dir = TARGET_DIR + wave_name
+        if not os.path.isdir(current_target_dir):
+            os.mkdir(current_target_dir)
 
-def single_plot(series1, suffix):
+        plot_interp_waves(wave_to_plot, wave_name, 20, current_target_dir)
+
+
+def single_plot(series1, wave_name, suffix, target_dir):
     plt.plot(X_AXIS, series1, color=TEAL)
     f = plt.gca()
     f.axes.get_xaxis().set_visible(False)
     f.axes.get_yaxis().set_visible(False)
     plt.xlim(0, 129)
     plt.ylim(0, 256)
-    plt.title('Cello', fontsize=16, fontname='Consolas')
-    plt.savefig(TARGET_DIR + 'overlay' + str(suffix) + '.png')
+    plt.title(wave_name, fontsize=16, fontname='Consolas')
+    plt.savefig(target_dir + 'overlay' + str(suffix) + '.png')
     plt.close()
 
 
 def main():
-    plot_interp_waves(piano, 20)
+    #plot_interp_waves(piano, 20)
+    animate_all_waves()
 
 
 if __name__ == '__main__':
