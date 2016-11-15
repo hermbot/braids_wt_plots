@@ -13,11 +13,12 @@ switching from one table to another.
 
 '''
 
-
 import numpy as np
 import pylab as plt
 import seaborn as sns
+import matplotlib.gridspec as gridspec
 import os
+from itertools import product
 
 RESOURCE_FILE = 'resources.cc'
 TARGET_DIR = 'C:\\Users\\mHermes\\Desktop\\test_images\\'
@@ -198,6 +199,43 @@ def single_plot(series1, wave_name, suffix, target_dir):
     plt.title(wave_name, fontsize=16, fontname='Consolas')
     plt.savefig(target_dir + 'overlay' + str(suffix) + '.png')
     plt.close()
+
+
+def plot_wavemap():
+
+    """Modified version of example from matplotlib docs."""
+    fig = plt.figure(figsize=(8, 8))
+
+    # gridspec inside gridspec
+    outer_grid = gridspec.GridSpec(4, 4, wspace=0.0, hspace=0.0)
+
+    for i in range(16):
+        inner_grid = gridspec.GridSpecFromSubplotSpec(3, 3,
+                subplot_spec=outer_grid[i], wspace=0.0, hspace=0.0)
+        a, b = int(i/4)+1,i%4+1
+        for j, (c, d) in enumerate(product(range(1, 4), repeat=2)):
+            ax = plt.Subplot(fig, inner_grid[j])
+            ax.plot(*squiggle_xy(a, b, c, d))
+            ax.set_xticks([])
+            ax.set_yticks([])
+            fig.add_subplot(ax)
+
+    all_axes = fig.get_axes()
+
+    #show only the outside spines
+    for ax in all_axes:
+        for sp in ax.spines.values():
+            sp.set_visible(False)
+        if ax.is_first_row():
+            ax.spines['top'].set_visible(True)
+        if ax.is_last_row():
+            ax.spines['bottom'].set_visible(True)
+        if ax.is_first_col():
+            ax.spines['left'].set_visible(True)
+        if ax.is_last_col():
+            ax.spines['right'].set_visible(True)
+
+plt.show()
 
 
 def main():
