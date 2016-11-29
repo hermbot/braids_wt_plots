@@ -105,6 +105,7 @@ def clean(data):
 
 #TODO move this somewhere more appropriate
 wt_waves = clean(read_values(RESOURCE_FILE, 'wt_waves'))
+wt_waves = clean(read_values(RESOURCE_FILE, 'wt_map'))
 
 def get_wave(address, table, no_samples=129):
     start = address * no_samples
