@@ -203,7 +203,10 @@ def single_plot(series1, wave_name, suffix, target_dir):
 
 def plot_wavemap():
 
-    """Modified version of example from matplotlib docs."""
+    """Modified version of example from matplotlib docs.
+    Get rid of this in lieu of bokeh example below?
+
+    """
     fig = plt.figure(figsize=(8, 8))
 
     # gridspec inside gridspec
@@ -235,7 +238,10 @@ def plot_wavemap():
         if ax.is_last_col():
             ax.spines['right'].set_visible(True)
 
-plt.show()
+    plt.show()
+
+
+
 
 
 def main():
