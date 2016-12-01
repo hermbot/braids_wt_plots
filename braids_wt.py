@@ -105,7 +105,7 @@ def clean(data):
 
 #TODO move this somewhere more appropriate
 wt_waves = clean(read_values(RESOURCE_FILE, 'wt_waves'))
-wt_waves = clean(read_values(RESOURCE_FILE, 'wt_map'))
+wt_map = clean(read_values(RESOURCE_FILE, 'wt_map'))
 
 def get_wave(address, table, no_samples=129):
     start = address * no_samples
@@ -190,8 +190,8 @@ def animate_all_waves():
         plot_interp_waves(wave_to_plot, wave_name, 20, current_target_dir)
 
 
-def single_plot(series1, wave_name, suffix, target_dir):
-    plt.plot(X_AXIS, series1, color=TEAL)
+def single_plot(series1, suffix, target_dir, wave_name=""):
+    plt.plot(X_AXIS, series1, color=MAGENTA)
     f = plt.gca()
     f.axes.get_xaxis().set_visible(False)
     f.axes.get_yaxis().set_visible(False)
@@ -202,9 +202,22 @@ def single_plot(series1, wave_name, suffix, target_dir):
     plt.close()
 
 
+def plot_wave_map():
+    map_dir = "C:\\Users\\mHermes\\Desktop\\Lunch\\wt_map\\"
+    test = 0
+    for i in wt_map:
+        data = get_wave(i, wt_waves)
+        single_plot(data, test, map_dir, "test")
+        test += 1
+
+
+
+
+
 def main():
     #plot_interp_waves(piano, 20)
     #animate_all_waves()
+    plot_wave_map()
 
 
 if __name__ == '__main__':
